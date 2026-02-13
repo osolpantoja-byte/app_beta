@@ -1,2 +1,2 @@
 # app_beta
-proyecto fullstar
+project fullstack
