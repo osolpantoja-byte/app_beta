@@ -1,29 +1,23 @@
 <?php
-//local database configuration
-$LOCAL_HOST = 'localhost';//127.0.0.1
-$LOCAL_DBNAME= 'app_beta';
-$LOCAL_USERNAME='postgres';
-$LOCAL_PASSWORD= 'unicesmag';
-$LOCAL_PORT='5432';
+$LOCAL_HOST = 'localhost';
+$LOCAL_DBNAME = 'app_beta';
+$LOCAL_USERNAME = 'postgres';
+$LOCAL_PASSWORD = 'unicesmag';
+$LOCAL_PORT = '5432';
 
-//superbase database configuration
+try {
+    $conn = new PDO(
+        "pgsql:host=$LOCAL_HOST;port=$LOCAL_PORT;dbname=$LOCAL_DBNAME",
+        $LOCAL_USERNAME,
+        $LOCAL_PASSWORD
+    );
 
-$SUPA_host='';
-$SUPA_DBNNAME='';
-$SUPA_USERNAME='';
-$SUPA_PASSWORD='';
-$SUPA_PORT='';
+    // Para que muestre errores
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$data_conection="
-host=$LOCALHOST
-dbname=$LOCAL_DBNAME
-user=$LOCAL_USERNAME
-paswword=$LOCAL_PASWWORD
-port=$LOCAL_PORT
-";
+    echo "Conexión exitosa"; // SOLO PARA PRUEBA
 
-$conn = pg_connect($data_conection);
-if (!$conn){
-
+} catch (PDOException $e) {
+    echo "Error de conexión: " . $e->getMessage();
 }
 ?>
